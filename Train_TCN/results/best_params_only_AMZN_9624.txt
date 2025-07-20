@@ -1,8 +1,0 @@
-num_channels: [32, 64]
-kernel_size: 5
-dropout: 0.2
-emb_dim: 32
-batch_size: 16
-learning_rate: 0.001
-best_epoch: 50
-best_val_loss: 0.037547608796816206

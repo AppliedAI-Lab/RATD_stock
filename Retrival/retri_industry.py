@@ -163,7 +163,7 @@ def main():
     try:
         # encoder = TCNEncoder(input_size=10, num_channels=[32, 64], kernel_size=5, dropout=0.1, emb_dim=64)
         encoder = TCNEncoder(input_size=49, num_channels=[32, 64], kernel_size=5, dropout=0.1, emb_dim=64)
-        encoder.load_state_dict(torch.load("tcn_industry_encoder_best_AMZN_9624.pt", map_location="cpu"))
+        encoder.load_state_dict(torch.load("./Train_TCNT/results/tcn_industry_encoder_best_AMZN_9624.pt", map_location="cpu"))
         encoder.eval()
 
         with torch.no_grad():

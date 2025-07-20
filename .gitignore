@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Model weights and checkpoints
+*.pt
+*.pth
+*.pk
+*.h5
+*.ckpt
+
+# Large data and intermediate outputs
+*.csv
+*.npy
+*.npz
+*.pkl
+*.npz
+*.npz
+
+# Output folders
+Diffusion/save/
+Train_TCN/results/
+Retrival/*_k_n_*/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# PDF and reports
+*.pdf
+
+# Configs (if sensitive)
+Diffusion/config/*.yaml
+
+# Exclude example configs (uncomment if needed)
+# !Diffusion/config/base_stock.yaml
+
+# Exclude generated outputs
+Diffusion/*/generated_outputs*
+
+# Exclude all industry and stock csvs in root folders
+Diffusion/*.csv
+Retrival/*.csv
+Train_TCN/*.csv
+
+# Exclude all best params and results
+Train_TCN/results/*.txt
+Train_TCN/results/*.csv 

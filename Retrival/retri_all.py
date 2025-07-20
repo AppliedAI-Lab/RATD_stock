@@ -99,7 +99,6 @@ def main():
     output_folder = "AMZN_k_n_all"
     os.makedirs(output_folder, exist_ok=True)
 
-    # Đọc dữ liệu
     df = pd.read_csv(csv_path)
     df['Date'] = pd.to_datetime(df['Date'], utc=True)
 
@@ -162,7 +161,7 @@ def main():
     try:
         # encoder = TCNEncoder(input_size=88, num_channels=[32, 64], kernel_size=3, dropout=0.1, emb_dim=64)
         encoder = TCNEncoder(input_size=486, num_channels=[32, 64], kernel_size=5, dropout=0.1, emb_dim=64)
-        encoder.load_state_dict(torch.load("tcn_all_encoder_best_9624.pt", map_location="cpu"))
+        encoder.load_state_dict(torch.load("./Train_TCNT/results/tcn_all_encoder_best_9624.pt", map_location="cpu"))
         print(encoder)
         encoder.eval()
 

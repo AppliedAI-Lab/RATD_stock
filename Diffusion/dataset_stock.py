@@ -63,8 +63,9 @@ class StockDataset(Dataset):
             self.data_x = data[border1:border2]
         
         self.reference = torch.clamp(self.reference, min=0, max=self.data.shape[0] - self.seq_len - self.pred_len)
-    def __getitem__(self, index): # train, val, test  init 0
-        s_begin = index #seq+pre i  1---40
+    def __getitem__(self, index): 
+        
+        s_begin = index 
         s_end = s_begin + self.seq_len + self.pred_len
         # r_begin = s_end - self.label_len  # 20--40   40-->60
         r_begin = s_end - self.pred_len
@@ -75,14 +76,30 @@ class StockDataset(Dataset):
 
 
        # load ref 
-        for i in range(self.top_k): #val :
-            
-            start_idx = (self.top_k * index + i) * self.pred_len #0 (0, 23)
-            end_idx = (self.top_k * index + i + 1) * self.pred_len #24
-            segment = self.reference[start_idx:end_idx]  # (24,)
-            normalized = (segment - segment.min()) / (segment.max() - segment.min() + 1e-8)
-            reference[i * self.pred_len : (i + 1) * self.pred_len] = normalized.unsqueeze(1)  # (24, 1)
+        if self.flag == 'train':
+            for i in range(self.top_k): #val :
+                
+                start_idx = (self.top_k * index + i) * self.pred_len #0 (0, 23)
+                end_idx = (self.top_k * index + i + 1) * self.pred_len #24
+                segment = self.reference[start_idx:end_idx]  # (24,)
+                normalized = (segment - segment.min()) / (segment.max() - segment.min() + 1e-8)
+                reference[i * self.pred_len : (i + 1) * self.pred_len] = normalized.unsqueeze(1)  # (24, 1)
 
+        else:
+            total_len = len(self.raw_data)
+            train = int(total_len * 0.7)
+            sample_train = train - self.seq_len - self.pred_len + 1
+
+            his_index = sample_train + self.pred_len + self.seq_len - 1
+            index = his_index + index  # a vt gọn index = sample_train cx đc
+
+            for i in range(self.top_k): #val :
+                
+                start_idx = (self.top_k * index + i) * self.pred_len #0 (0, 23)
+                end_idx = (self.top_k * index + i + 1) * self.pred_len #24
+                segment = self.reference[start_idx:end_idx]  # (24,)
+                normalized = (segment - segment.min()) / (segment.max() - segment.min() + 1e-8)
+                reference[i * self.pred_len : (i + 1) * self.pred_len] = normalized.unsqueeze(1)  # (24, 1)
         # print(reference.shape)
         # start_idx = self.top_k * index  * self.pred_len 
         # end_idx = self.top_k * (index + 1) * self.pred_len

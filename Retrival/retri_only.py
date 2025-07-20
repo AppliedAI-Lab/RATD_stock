@@ -114,7 +114,7 @@ def main():
         dropout=0.2,
         emb_dim=32
     )
-    encoder.load_state_dict(torch.load("tcn_only_encode_best_AMZN_9624.pt", map_location="cpu"))
+    encoder.load_state_dict(torch.load("./Train_TCNT/results/tcn_only_encode_best_AMZN_9624.pt", map_location="cpu"))
     encoder.eval()
 
     # Tạo embedding

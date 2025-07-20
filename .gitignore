@@ -13,7 +13,7 @@ __pycache__/
 *.ckpt
 
 # Large data and intermediate outputs
-*.csv
+# *.csv
 *.npy
 *.npz
 *.pkl
@@ -24,6 +24,8 @@ __pycache__/
 Diffusion/save/
 Train_TCN/results/
 Retrival/*_k_n_*/
+Diffusion/*_k_n_*/
+Train_TCN/*_k_n_*/
 
 # System files
 .DS_Store
@@ -49,6 +51,3 @@ Diffusion/*.csv
 Retrival/*.csv
 Train_TCN/*.csv
 
-# Exclude all best params and results
-Train_TCN/results/*.txt
-Train_TCN/results/*.csv 
